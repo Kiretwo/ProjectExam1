@@ -1,0 +1,9 @@
+
+.hidden {
+  display: none;
+}
+
+.blog-image {
+  width: 300px;
+  height: auto;
+}
