@@ -24,7 +24,7 @@ if (userRole === "owner") {
   // Enable owner/administrator-only features
   adminButton.classList.remove("hidden");
   adminButton.addEventListener("click", function() {
-    window.location.href = "manage-posts.html";
+    window.location.href = "make.html";
   });
 } else {
   // Disable owner/administrator-only features
@@ -81,7 +81,7 @@ fetchApi(apiKey)
         // Create HTML elements for the current post
         const postHtml = `
           <div class="post">
-            <h2>${title}</h2>
+            <h3>${title}</h2>
             <img class="blog-image" src="${imageUrl}" alt="${imageAlt}">
             <p>${body}</p>
             <p>Author: ${authorName}</p>
