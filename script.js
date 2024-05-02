@@ -1,12 +1,29 @@
-const storedName = localStorage.getItem("name");
+const apiKey = "ca3d7797-54e4-4a30-9036-8225cda050cf"; // Define your API key
 
-if (storedName) {
-  const welcomeMessage = `Welcome ${storedName}!`;
-  console.log(welcomeMessage);
-  document.getElementById("welcomeMessage").textContent = welcomeMessage;
-} else {
-  console.error("User name not found in localStorage");
-}
+fetchApi(apiKey)
+  .then((response) => {
+    console.log("Fetched data:", response);
+    // Extract the data array from the response
+    const data = response.data;
+    const storedName = localStorage.getItem("name");
+
+    if (storedName) {
+      // Retrieve the avatar URL of the first post
+      if (Array.isArray(data) && data.length > 0) {
+        const avatarUrl = data[0].author.avatar.url;
+        // Concatenate the avatar URL with the welcome message
+        const welcomeMessage = `Welcome <div class="avatar-container"><img class="avatar-img" src="${avatarUrl}" alt="Avatar"></div> ${storedName}!`;
+        console.log(welcomeMessage);
+        document.getElementById("welcomeMessage").innerHTML = welcomeMessage;
+      }
+    } else {
+      console.error("User name not found in localStorage");
+    }
+  })
+  .catch((error) => {
+    console.error("Fetch operation failed:", error);
+  });
+
 
 const indexLoginAndClearLocalStorage = document.getElementById(
   "indexLoginAndClearLocalStorage"
@@ -59,7 +76,6 @@ async function fetchApi(apiKey) {
 }
 
 // Call fetchApi with apiKey parameter
-const apiKey = "ca3d7797-54e4-4a30-9036-8225cda050cf"; // Define your API key
 fetchApi(apiKey)
   .then((response) => {
     console.log("Fetched data:", response);
