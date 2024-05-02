@@ -107,7 +107,7 @@ fetchApi(apiKey)
         postElement.innerHTML = 
         `
           <div class="blog-card">
-            <img class="blog-image" src="${media}" alt="${media.alt}">
+            <img class="post-image" src="${media}" alt="${media.alt}">
             <p class="tags">${tags}</p>
             <h2>${title}</h2>
             <p>${body}</p>

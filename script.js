@@ -98,7 +98,7 @@ fetchApi(apiKey)
         const postHtml = `
           <div class="post">
             <h3>${title}</h2>
-            <img class="blog-image" src="${imageUrl}" alt="${imageAlt}">
+            <img class="post-image" src="${imageUrl}" alt="${imageAlt}">
             <p>${body}</p>
             <p>Author: ${authorName}</p>
             <p>Created: ${createdDate}</p>
@@ -118,41 +118,47 @@ fetchApi(apiKey)
   });
 
 
-  // Fetch API data and generate post HTML
+// Fetch API data and generate post HTML
 fetchApi(apiKey)
-.then((response) => {
-  console.log("Fetched data:", response);
-  const data = response.data;
+  .then((response) => {
+    console.log("Fetched data:", response);
+    const data = response.data;
 
-  if (Array.isArray(data) && data.length > 0) {
-    let displayContent = '';
+    if (Array.isArray(data) && data.length > 0) {
+      let displayContent = '';
 
-    data.forEach(post => {
-      const title = post.title;
-      const body = post.body;
-      const authorName = post.author.name;
-      const createdDate = new Date(post.created).toLocaleString();
-      const imageUrl = post.media.url;
-      const imageAlt = post.media.alt;
-      const postId = post.id;
+      data.forEach(post => {
+        const title = post.title;
+        const body = post.body;
+        const authorName = post.author.name;
+        const createdDate = new Date(post.created).toLocaleString();
+        const imageUrl = post.media.url;
+        const imageAlt = post.media.alt;
+        const postId = post.id;
 
-      const postHtml = `
-        <div class="post">
-          <h3><a href="post/index.html?id=${postId}">${title}</a></h3>
-          <img class="blog-image" src="${imageUrl}" alt="${imageAlt}">
-          <p>${body}</p>
-          <p>Author: ${authorName}</p>
-          <p>Created: ${createdDate}</p>
-        </div>
-      `;
-      displayContent += postHtml;
-    });
+        const postHtml = `
+          <div class="post" onclick="viewPostDetail('${postId}')">
+            <h3>${title}</h3>
+            <img class="post-image" src="${imageUrl}" alt="${imageAlt}">
+            <p>${body}</p>
+            <p>Author: ${authorName}</p>
+            <p>Created: ${createdDate}</p>
+          </div>
+        `;
+        displayContent += postHtml;
+      });
 
-    document.getElementById('content').innerHTML = displayContent;
-  } else {
-    console.error("No data received or data is empty:", data);
-  }
-})
-.catch((error) => {
-  console.error("Fetch operation failed:", error);
-});
+      document.getElementById('content').innerHTML = displayContent;
+    } else {
+      console.error("No data received or data is empty:", data);
+    }
+  })
+  .catch((error) => {
+    console.error("Fetch operation failed:", error);
+  });
+
+// Function to view post detail
+function viewPostDetail(postId) {
+  window.location.href = `post/index.html?id=${postId}`;
+}
+

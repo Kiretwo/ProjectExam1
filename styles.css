@@ -3,7 +3,11 @@
   display: none;
 }
 
-.blog-image {
+.post {
+  display: inline-block;
+}
+
+.post-image {
   width: 300px;
   height: auto;
 }
