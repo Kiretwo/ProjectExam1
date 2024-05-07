@@ -138,3 +138,21 @@ function getPostIdFromURL() {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get("id");
 }
+
+// Add this code to the existing JavaScript file for the post detail page
+
+document.addEventListener("DOMContentLoaded", function() {
+  const editButton = document.createElement("button");
+  editButton.textContent = "Edit Post";
+  editButton.addEventListener("click", handleEditButtonClick);
+  document.body.appendChild(editButton);
+});
+
+function handleEditButtonClick() {
+  const postId = getPostIdFromURL();
+  if (postId) {
+    window.location.href = `/post/edit-post.html?id=${postId}`;
+  } else {
+    console.error("Post ID not found in URL.");
+  }
+}
