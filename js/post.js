@@ -47,6 +47,9 @@ fetch(`https://v2.api.noroff.dev/blog/posts/ErikT/${postId}`)
 */
 
 
+
+
+/*
 async function fetchApi(apiKey) {
   const options = {
     headers: {
@@ -72,9 +75,9 @@ async function fetchApi(apiKey) {
   }
 }
 
-const apiKey = "ca3d7797-54e4-4a30-9036-8225cda050cf";
+const accessKey = "ca3d7797-54e4-4a30-9036-8225cda050cf";
 
-fetchApi(apiKey)
+fetchApi(accessKey)
   .then((response) => {
     console.log("Fetched data:", response);
     const postsContainer = document.getElementById("postDetails");
@@ -111,7 +114,6 @@ fetchApi(apiKey)
             <p class="tags">${tags}</p>
             <h2>${title}</h2>
             <p>${body}</p>
-            <p>${id}</p>
             <p>Author: ${authorName}</p>
             <p>Created: ${createdDate}</p>
           </div>
@@ -139,13 +141,19 @@ function getPostIdFromURL() {
   return urlParams.get("id");
 }
 
-// Add this code to the existing JavaScript file for the post detail page
+// Edit Button
 
 document.addEventListener("DOMContentLoaded", function() {
-  const editButton = document.createElement("button");
-  editButton.textContent = "Edit Post";
-  editButton.addEventListener("click", handleEditButtonClick);
-  document.body.appendChild(editButton);
+  const editButtonContainer = document.getElementById("editButton");
+
+  if (editButtonContainer) {
+    const editButton = document.createElement("button");
+    editButton.textContent = "Edit Post";
+    editButton.addEventListener("click", handleEditButtonClick);
+    editButtonContainer.appendChild(editButton);
+  } else {
+    console.error("Edit button container not found.");
+  }
 });
 
 function handleEditButtonClick() {
@@ -156,3 +164,183 @@ function handleEditButtonClick() {
     console.error("Post ID not found in URL.");
   }
 }
+
+
+// Function to delete a post
+async function deletePost(postId) {
+  const apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXJpa1QiLCJlbWFpbCI6ImVyaXRvcjAwOTkxQHN0dWQubm9yb2ZmLm5vIiwiaWF0IjoxNzEzNDQwNTczfQ.0lPJOLKDAa-uq13nE2wWG4uynz8CxSBi0UtBUv_eYck";
+  const url = `https://v2.api.noroff.dev/blog/posts/ErikT/${postId}`;
+
+  const options = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${apiKey}`
+    }
+  };
+
+  try {
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    // Post deleted successfully
+    console.log("Post deleted successfully!");
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    // Display error message in console
+  }
+}
+
+// Function to handle delete button click
+function handleDeleteButtonClick() {
+  const postId = getPostIdFromURL();
+
+  // Send DELETE request to delete the post
+  deletePost(postId)
+    .then(() => {
+      // Show success message
+      showNotification("Post deleted successfully!", "success");
+
+      // Optionally, redirect the user to another page after deletion
+      window.location.href = "redirect-url-after-deletion";
+    })
+    .catch((error) => {
+      // Show error message
+      showNotification(`Error: ${error.message}`, "error");
+    });
+}
+
+// Add event listener to the delete button
+const deleteButton = document.getElementById("deleteButton");
+deleteButton.addEventListener("click", handleDeleteButtonClick);
+*/
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  const postId = getPostIdFromURL();
+  const accessKey = "ca3d7797-54e4-4a30-9036-8225cda050cf";
+
+  fetchPostDetails(accessKey, postId);
+  setupEditButton(postId);
+  setupDeleteButton(postId);
+});
+
+function getPostIdFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("id");
+}
+
+async function fetchPostDetails(apiKey, postId) {
+  const url = `https://v2.api.noroff.dev/blog/posts/ErikT/${postId}`;
+  const options = {
+    headers: {
+      Authorization: `Bearer ${apiKey}`
+    }
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log("Fetched post data:", data); // Log the fetched data for debugging
+    displayPostDetails(data.data); // Pass the post data directly
+  } catch (error) {
+    console.error("Error fetching post details:", error);
+    document.getElementById('postDetails').innerHTML = `<p>Error fetching post details: ${error.message}</p>`;
+  }
+}
+
+function displayPostDetails(post) {
+  console.log("Post data to display:", post); // Log the post data to understand its structure
+
+  if (!post || !post.title || !post.body || !post.author || !post.media) {
+    document.getElementById('postDetails').innerHTML = "<p>Invalid post data.</p>";
+    return;
+  }
+
+  const postHtml = `
+    <div class="post">
+      <h2>${post.title}</h2>
+      <img class="post-image" src="${post.media.url}" alt="${post.media.alt}">
+      <p>${post.body}</p>
+      <p>Author: ${post.author.name}</p>
+      <p>Created: ${new Date(post.created).toLocaleString()}</p>
+    </div>
+  `;
+  document.getElementById('postDetails').innerHTML = postHtml;
+}
+
+function setupEditButton(postId) {
+  const editButton = document.getElementById("editButton");
+  if (editButton) {
+    editButton.addEventListener("click", function() {
+      if (postId) {
+        window.location.href = `/post/edit-post.html?id=${postId}`;
+      } else {
+        console.error("Post ID not found in URL.");
+      }
+    });
+  } else {
+    console.error("Edit button not found.");
+  }
+}
+
+async function deletePost(postId) {
+  const apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRXJpa1QiLCJlbWFpbCI6ImVyaXRvcjAwOTkxQHN0dWQubm9yb2ZmLm5vIiwiaWF0IjoxNzEzNDQwNTczfQ.0lPJOLKDAa-uq13nE2wWG4uynz8CxSBi0UtBUv_eYck";
+  const url = `https://v2.api.noroff.dev/blog/posts/ErikT/${postId}`;
+
+  const options = {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${apiKey}`
+    }
+  };
+
+  try {
+    const response = await fetch(url, options);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    // Post deleted successfully
+    console.log("Post deleted successfully!");
+    showNotification("Post deleted successfully!", "success");
+    window.location.href = "/posts"; // Redirect to posts list after deletion
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    showNotification(`Error: ${error.message}`, "error");
+  }
+}
+
+function setupDeleteButton(postId) {
+  const deleteButton = document.getElementById("deleteButton");
+  if (deleteButton) {
+    deleteButton.addEventListener("click", function() {
+      if (postId) {
+        deletePost(postId);
+      } else {
+        console.error("Post ID not found in URL.");
+      }
+    });
+  } else {
+    console.error("Delete button not found.");
+  }
+}
+
+function showNotification(message, type) {
+  const notificationContainer = document.createElement("div");
+  notificationContainer.className = `notification ${type}`;
+  notificationContainer.textContent = message;
+  document.body.appendChild(notificationContainer);
+
+  setTimeout(() => {
+    notificationContainer.remove();
+  }, 3000); // Remove notification after 3 seconds
+}
+
