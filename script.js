@@ -162,3 +162,52 @@ function viewPostDetail(postId) {
   window.location.href = `post/index.html?id=${postId}`;
 }
 
+
+
+// Carousel Script
+let slideIndex = 0;
+let slideInterval;
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+
+  if (n > slides.length) { slideIndex = 1; }
+  if (n < 1) { slideIndex = slides.length; }
+  
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+
+  slides[slideIndex - 1].style.display = "block";  
+  dots[slideIndex - 1].className += " active";
+}
+
+function plusSlides(n) {
+  clearInterval(slideInterval);
+  showSlides(slideIndex += n);
+  slideInterval = setInterval(autoSlides, 5000);
+}
+
+function currentSlide(n) {
+  clearInterval(slideInterval);
+  showSlides(slideIndex = n);
+  slideInterval = setInterval(autoSlides, 5000);
+}
+
+function autoSlides() {
+  slideIndex++;
+  showSlides(slideIndex);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  showSlides(slideIndex = 1);
+  slideInterval = setInterval(autoSlides, 5000);
+});
+
+
