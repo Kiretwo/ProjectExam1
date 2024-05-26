@@ -4,10 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="styles.css">
   <script src="script.js" defer></script>
 </head>
 <body>
+  <header>
+    <div id="logo-container">
+      <a href="/"><img src="media/PE1-logo_600x484.png" class="logo-img"></a>
+      <a href="/"><div class="logo-text">True Fitness</div></a>
+    </div>
+    <nav>
+      <ul class="sidebar">
+        <li onclick=hideSidebar()><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+        <li><a href="/our-professionals.html">Our Professionals</a></li>
+        <li><a href="/about.html">About Us</a></li>
+        <li><a href="/contact.html">Contact Us</a></li>
+      </ul>
+      <ul>
+        <li class="hideOnMobile"><a href="/our-professionals.html">Our Professionals</a></li>
+        <li class="hideOnMobile"><a href="/about.html">About Us</a></li>
+        <li class="hideOnMobile"><a href="/contact.html">Contact Us</a></li>
+        <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="menu-icon" height="30" viewBox="0 -960 960 960" width="30"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+      </ul>
+    </nav>
+  </header>
+
+
   <div id="welcomeMessage"></div>
 
   <a id="indexLoginAndClearLocalStorage" href="login.html">login</a>
