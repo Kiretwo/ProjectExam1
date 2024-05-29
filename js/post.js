@@ -267,10 +267,14 @@ function displayPostDetails(post) {
   const postHtml = `
     <div class="post">
       <h2>${post.title}</h2>
-      <img class="post-image" src="${post.media.url}" alt="${post.media.alt}">
-      <p>${post.body}</p>
+      <div class="avatar-container">
+        <img class="avatar-img" src="${post.author.avatar.url}" alt="Avatar">
+      </div>
       <p>Author: ${post.author.name}</p>
       <p>Created: ${new Date(post.created).toLocaleString()}</p>
+      <p class="tags">${post.tags}<p>
+      <img class="post-image" src="${post.media.url}" alt="${post.media.alt}">
+      <p>${post.body}</p>
     </div>
   `;
   document.getElementById('postDetails').innerHTML = postHtml;

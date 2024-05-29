@@ -79,7 +79,7 @@ fetchApi(apiKey)
       if (Array.isArray(data) && data.length > 0) {
         const avatarUrl = data[0].author.avatar.url;
         // Concatenate the avatar URL with the welcome message
-        const welcomeMessage = `Welcome <div class="avatar-container"><img class="avatar-img" src="${avatarUrl}" alt="Avatar"></div> ${storedName}!`;
+        const welcomeMessage = `<div class="avatar-container"><img class="avatar-img" src="${avatarUrl}" alt="Avatar"></div><p class="welcome-text">Welcome back ${storedName}!</p>`;
         console.log(welcomeMessage);
         document.getElementById("welcomeMessage").innerHTML = welcomeMessage;
       }
@@ -118,6 +118,7 @@ if (userRole === "owner") {
 
 
 
+// Function to fetch API data
 async function fetchApi(apiKey) {
   const options = {
     headers: {
@@ -142,48 +143,10 @@ async function fetchApi(apiKey) {
   }
 }
 
-// Call fetchApi with apiKey parameter
-fetchApi(apiKey)
-  .then((response) => {
-    console.log("Fetched data:", response);
-    // Extract the data array from the response
-    const data = response.data;
-    // Check if data is not empty and contains at least one object
-    if (Array.isArray(data) && data.length > 0) {
-      // Create a variable to store the HTML content
-      let displayContent = '';
-      // Iterate over each post object
-      data.forEach(post => {
-        // Extract relevant information for each post
-        const title = post.title;
-        const body = post.body;
-        const authorName = post.author.name;
-        const createdDate = new Date(post.created).toLocaleString();
-        const imageUrl = post.media.url; // Access the image URL
-        const imageAlt = post.media.alt;
-        // Create HTML elements for the current post
-        const postHtml = `
-          <div class="post">
-            <h3>${title}</h2>
-            <img class="post-image" src="${imageUrl}" alt="${imageAlt}">
-            <p>${body}</p>
-            <p>Author: ${authorName}</p>
-            <p>Created: ${createdDate}</p>
-          </div>
-        `;
-        // Append the HTML for the current post to the displayContent variable
-        displayContent += postHtml;
-      });
-      // Display all posts in the HTML document
-      document.getElementById('content').innerHTML = displayContent;
-    } else {
-      console.error("No data received or data is empty:", data);
-    }
-  })
-  .catch((error) => {
-    console.error("Fetch operation failed:", error);
-  });
-
+// Function to view post detail
+function viewPostDetail(postId) {
+  window.location.href = `post/index.html?id=${postId}`;
+}
 
 // Fetch API data and generate post HTML
 fetchApi(apiKey)
@@ -204,12 +167,11 @@ fetchApi(apiKey)
         const postId = post.id;
 
         const postHtml = `
-          <div class="post" onclick="viewPostDetail('${postId}')">
-            <h3>${title}</h3>
-            <img class="post-image" src="${imageUrl}" alt="${imageAlt}">
-            <p>${body}</p>
-            <p>Author: ${authorName}</p>
-            <p>Created: ${createdDate}</p>
+          <div class="card" onclick="viewPostDetail('${postId}')">
+            <div class="card-image-container">
+              <img class="card-image" src="${imageUrl}" alt="${imageAlt}">
+            </div>
+            <h2 class="card-title">${title}</h2>
           </div>
         `;
         displayContent += postHtml;
@@ -223,11 +185,6 @@ fetchApi(apiKey)
   .catch((error) => {
     console.error("Fetch operation failed:", error);
   });
-
-// Function to view post detail
-function viewPostDetail(postId) {
-  window.location.href = `post/index.html?id=${postId}`;
-}
 
 
 
