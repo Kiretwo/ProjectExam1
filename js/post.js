@@ -40,12 +40,12 @@ function displayPostDetails(post) {
 
   const postHtml = `
     <div class="post">
-      <h2>${post.title}</h2>
+      <h1 class"post-title">${post.title}</h1>
       <div class="author-container">
         <div class="avatar-container">
           <img class="avatar-img" src="${post.author.avatar.url}" alt="Avatar">
         </div>
-        <div class="post-author">
+        <div class="author-name-container">
           <p>${post.author.name}</p>
           <span>${new Date(post.created).toLocaleString()}</span>
         </div>

@@ -3,7 +3,7 @@
 }
 
 
-body {
+.post-body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0px 12px;
@@ -20,7 +20,7 @@ body {
   text-align: left;
 }
 
-h2 {
+.post-title {
   font-size: 28px;
   margin-bottom: 10px;
 }
@@ -47,16 +47,16 @@ h2 {
   object-position: -10px 0px;
 }
 
-.post-author {
+.author-name-container {
   display: flex;
   flex-direction: column;
 }
 
-.post-author p {
+.author-name-container p {
   margin: 0;
 }
 
-.post-author span {
+.author-name-container span {
   font-size: 14px;
   color: gray;
 }
@@ -74,22 +74,14 @@ h2 {
   font-size: 12px;
 }
 
-button {
+button#editButton {
+  background-color: #4caf50;
+  color: white;
   padding: 8px 12px;
   margin-right: 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-button#editButton {
-  background-color: #4caf50;
-  color: white;
-}
-
-button#deleteButton {
-  background-color: #f44336;
-  color: white;
 }
 
 .post-image {
@@ -101,29 +93,4 @@ button#deleteButton {
 .post-body {
   font-size: 16px;
   line-height: 1.6;
-}
-
-
-
-/* MEDIA QUERIES */
-@media screen and (max-width: 700px) {
-  .footer-column {
-    width: 50%;
-    margin-bottom: 45px;
-  }
-  
-  .hideOnMobile{
-    display: none;
-  }
-
-  .menu-button{
-    display: block;
-  }
-}
-
-
-@media screen and (max-width: 500px) {
-  .footer-column {
-    width: 100%;
-  }
 }
