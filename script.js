@@ -159,9 +159,6 @@ fetchApi(apiKey)
 
       data.forEach(post => {
         const title = post.title;
-        const body = post.body;
-        const authorName = post.author.name;
-        const createdDate = new Date(post.created).toLocaleString();
         const imageUrl = post.media.url;
         const imageAlt = post.media.alt;
         const postId = post.id;

@@ -4,6 +4,16 @@
   margin: 0;
 }
 
+.hidden {
+  display: none;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 /* HEADER */
 header {
   background-color: #E29191;
@@ -97,6 +107,10 @@ header nav ul li:hover {
   width: 40px;
   height: 40px;
   color: #333333;
+}
+
+.active-underline {
+  text-decoration: underline;
 }
 
 /* INDEX CAROUSEL */
@@ -220,9 +234,7 @@ header nav ul li:hover {
 
 
 
-.hidden {
-  display: none;
-}
+
 
 .body-content-margin {
   margin: 12px;
@@ -269,11 +281,8 @@ header nav ul li:hover {
   cursor: pointer;
 }
 
-/*
-.card-title:hover {
-  text-decoration: underline;
-}
-*/
+
+
 
 
 #user-container {
@@ -329,21 +338,86 @@ header nav ul li:hover {
 }
 
 
+/* FOOTER */
+.footer {
+  margin-top: auto;
+  margin-right: 12px;
+  margin-left: 12px;
+  padding-top: 70px;
+}
 
+.footer-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-top-width: 1.5px;
+  border-top-style: solid;
+  border-top-color: rgba(0,0,0,1);
+  padding-top: 20px;
+}
 
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column {
+  width: 33.3%;
+  padding: 0 15px;
+  line-height: 1.5;
+}
+
+.footer-column h3 {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.footer-column ul li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: rgba(0,0,0,0.75);
+  text-decoration: none;
+  display: block;
+}
+
+.footer-column ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  display: flex;
+  justify-content: center;
+  padding-top: 70px;
+  padding-bottom: 20px;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  color: rgba(0, 0, 0, 0.6);
+}
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 700px) {
-  footer nav ul {
-      flex-direction: column;
+  .footer-column {
+    width: 50%;
+    margin-bottom: 45px;
   }
   
   .hideOnMobile{
-      display: none;
+    display: none;
   }
 
   .menu-button{
-      display: block;
+    display: block;
   }
 
   .grid-container {
@@ -355,5 +429,9 @@ header nav ul li:hover {
 @media screen and (max-width: 500px) {
   .card-image {
     height: 140px;
+  }
+
+  .footer-column {
+    width: 100%;
   }
 }
