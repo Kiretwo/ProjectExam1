@@ -53,7 +53,9 @@ function displayPostDetails(post) {
       <div class="tags">
         ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
       </div>
-      <img class="post-image" src="${post.media.url}" alt="${post.media.alt}">
+      <div class="post-image-container">
+        <img class="post-image" src="${post.media.url}" alt="${post.media.alt}">
+      </div>
       <p class="post-body">${post.body}</p>
     </div>
   `;
@@ -75,6 +77,11 @@ function setupEditButton(postId) {
   }
 }
 
+
+const indexLoginAndClearLocalStorage = document.getElementById("indexLoginAndClearLocalStorage");
+indexLoginAndClearLocalStorage.addEventListener("click", () => {
+  localStorage.clear();
+});
 
 const userRole = localStorage.getItem("userRole");
 const adminButton = document.getElementById("editButton");

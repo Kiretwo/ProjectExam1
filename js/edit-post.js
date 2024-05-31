@@ -67,9 +67,9 @@ async function updatePostData(postId, postData) {
     body: JSON.stringify(postData)
   };
 
-  console.log("API Key:", apiKey);
-  console.log("URL:", url);
-  console.log("Options:", options);
+  //console.log("API Key:", apiKey);
+  //console.log("URL:", url);
+  //console.log("Options:", options);
 
   try {
     const response = await fetch(url, options);
@@ -124,8 +124,8 @@ function handleFormSubmit(event) {
   // Retrieve post ID from URL query parameters
   const postId = getPostIdFromURL();
 
-  console.log("Post ID:", postId);
-  console.log("Post Data to Update:", jsonData);
+  //console.log("Post ID:", postId);
+  //console.log("Post Data to Update:", jsonData);
 
   // Send updated post data to server
   updatePostData(postId, jsonData);
