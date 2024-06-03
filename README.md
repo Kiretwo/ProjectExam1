@@ -6,13 +6,7 @@
 
 ## Description
 
-Add a more detailed description of what your project entails and set out to do.
-
-You can add some bullet points if you'd like to:
-
-- List item 1
-- List item 2
-- List item 3
+True Fitness is a comprehensive blog designed to guide users in their fitness journey. The blog offers a variety of exercise guides and tips to help users find the best workouts tailored to their needs. Whether you are a beginner or an advanced fitness enthusiast, True Fitness provides valuable information to help you achieve your fitness goals.
 
 ## Built With
 
@@ -23,8 +17,5 @@ You can add some bullet points if you'd like to:
 
 ## Contact
 
-This is where you can leave your social links for people to contact you, such as a LinkedIn profile or Twitter link e.g.
+[My E-mail](eritor00991@stud.noroff.no)
 
-[My Twitter page](www.twitter.com)
-
-[My LinkedIn page](www.linkedin.com)
