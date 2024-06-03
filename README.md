@@ -14,8 +14,3 @@ True Fitness is a comprehensive blog designed to guide users in their fitness jo
 - [CSS]
 - [JavaScript]
 
-
-## Contact
-
-[My E-mail](eritor00991@stud.noroff.no)
-
