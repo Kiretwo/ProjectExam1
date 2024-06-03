@@ -10,7 +10,7 @@ True Fitness is a comprehensive blog designed to guide users in their fitness jo
 
 ## Built With
 
-- [HTML]
-- [CSS]
-- [JavaScript]
+- HTML
+- CSS
+- JavaScript
 
