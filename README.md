@@ -1,8 +1,8 @@
 # True Fitness Blog
 
-![image](https://user-images.githubusercontent.com/52622303/164316813-4b12d99f-aeb7-4069-85cf-e72b3a50ac99.png)
+![image](https://github.com/Kiretwo/ProjectExam1/assets/142889041/4020d8da-c6b8-450e-bab4-c5612fd1da5d)
 
-A simple overview of the use/purpose of the project.
+
 
 ## Description
 
